@@ -802,11 +802,8 @@ if not GROQ_API_KEY:
 else:
     client = Groq(api_key=GROQ_API_KEY)  # Khởi tạo client Groq
 
-# Đọc System Prompt (ưu tiên bản cập nhật SystemPrompt_updated.txt)
-SYSTEM_PROMPT_PATH = "SystemPrompt_updated.txt"
-if not os.path.exists(SYSTEM_PROMPT_PATH):
-    SYSTEM_PROMPT_PATH = "SystemPrompt.txt"  # Fallback về bản gốc
-    print(f"[INFO] Using original SystemPrompt.txt (updated not found)")
+# Đọc System Prompt (đã hợp nhất từ SystemPrompt.txt và SystemPrompt_updated.txt)
+SYSTEM_PROMPT_PATH = "SystemPrompt.txt"
 
 with open(SYSTEM_PROMPT_PATH, "r", encoding="utf-8") as f:
     SYSTEM_PROMPT = f.read()  # Nội dung system prompt
