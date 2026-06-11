@@ -1130,18 +1130,26 @@ def run_tests():
 # ============================================================
 # ╔══════════════════════════════════════════════════════════╗
 # ║  MAIN ENTRY POINT                                       ║
-# ║  - Chạy `python main.py` → chạy test                   ║
-# ║  - Chạy `uvicorn main:app --reload` → chạy server      ║
+# ║                                                        ║
+# ║  Cách chạy:                                            ║
+# ║    python main.py           → Chạy server              ║
+# ║    python main.py --test    → Chạy kiểm tra (Phần 5)   ║
+# ║    uvicorn main:app --reload → Chạy server             ║
 # ╚══════════════════════════════════════════════════════════╝
 # ============================================================
 if __name__ == "__main__":
     """
-    Khi chạy trực tiếp: python main.py
-      → Chạy test toàn bộ module (không cần API key)
-    
-    Khi chạy qua uvicorn: uvicorn main:app --reload
-      → Chạy FastAPI server
+    Entry point:
+      python main.py           → Chạy FastAPI server
+      python main.py --test    → Chạy test (không cần API key, không cần server)
+      uvicorn main:app --reload → Chạy FastAPI server
     """
+    # Kiểm tra tham số dòng lệnh: nếu có "--test" thì chạy test
+    if "--test" in sys.argv:
+        run_tests()
+        sys.exit(0)
+
+    # Nếu không có "--test" → chạy server
     import uvicorn
 
     print("=" * 60)
